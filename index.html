@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cybersecurity Lab: Hashing & Ciphers</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .difficulty {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .easy {
+            background-color: #2ecc71;
+        }
+        
+        .medium {
+            background-color: #f39c12;
+        }
+        
+        .hard {
+            background-color: #e74c3c;
+        }
+        
+        .example-cases {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+        }
+        
+        .task {
+            background-color: #e8f4f8;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            border-left: 3px solid #3498db;
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: #f1f1f1;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+            font-size: 0.8em;
+            color: #7f8c8d;
+        }
+        
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .scenario {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cybersecurity Lab: Hashing & Ciphers (Creative Coding)</h1>
+        <div class="header-info">
+            <span>Password Security Lab</span>
+            <span>Introduction to Cybersecurity</span>
+        </div>
+    </header>
+    
+    <div class="section">
+        <h2>Section 1: Hashing (Without Libraries)</h2>
+        
+        <div class="challenge">
+            <span class="difficulty easy">SIMPLE</span>
+            <h3>ASCII Sum Hasher</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> You are building your own basic hash function for a top-secret club. Instead of using any Python libraries, your job is to write a function <code>my_hash(word)</code> that adds the ASCII values of each character in the word and returns the total as the hash.
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example Test Cases:</strong><br>
+                Input: "cat" → ASCII: c=99, a=97, t=116 ⇒ Hash: 312<br>
+                Input: "dog" → ASCII: d=100, o=111, g=103 ⇒ Hash: 314<br>
+                Input: "hat" → ASCII: h=104, a=97, t=116 ⇒ Hash: 317
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Write the function and test it on at least 3 different words of your choice.
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <span class="difficulty medium">MEDIUM</span>
+            <h3>Shifted ASCII Hasher</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> A mysterious hacker encrypts usernames by shifting each letter by +1 in ASCII (e.g., a → b), and then adds the ASCII values of the shifted characters.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>shifted_hash(word)</code>.</li>
+                    <li>For each character, shift it by +1 in ASCII.</li>
+                    <li>Return the sum of ASCII values of the shifted characters.</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example Test Cases:</strong><br>
+                Input: "abc" → "bcd" = 98 + 99 + 100 = 297<br>
+                Input: "root" → "sppu" = 115 + 112 + 112 + 117 = 456<br>
+                Input: "admin" → "benjo" = 98 + 101 + 110 + 106 + 111 = 526
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Try this hash on usernames like "admin", "guest", and "root".
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <span class="difficulty hard">HARD</span>
+            <h3>Custom Hash Function Challenge</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> A security company needs a more robust hash function that reduces collisions (when different inputs produce the same hash value). They need a function that incorporates not just the ASCII values, but also the position of characters.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>position_hash(word)</code>.</li>
+                    <li>For each character, multiply its ASCII value by its position in the string (starting from 1).</li>
+                    <li>Sum these values and return the result modulo 1000 (to keep the hash value within a reasonable range).</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example Test Cases:</strong><br>
+                Input: "abc" → (97×1) + (98×2) + (99×3) = 97 + 196 + 297 = 590<br>
+                Input: "cba" → (99×1) + (98×2) + (97×3) = 99 + 196 + 291 = 586<br>
+                Input: "password" → ((112×1) + (97×2) + (115×3) + ... + (100×8)) % 1000 = 766
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Implement this function and test it with at least 5 different words. Discuss why this might be more collision-resistant than a simple ASCII sum.
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Section 2: Ciphers</h2>
+        
+        <div class="challenge">
+            <span class="difficulty easy">SIMPLE</span>
+            <h3>Caesar Cipher</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> A spy is sending secret messages using the Caesar Cipher with a shift of +3. Your task is to write a function that can both encrypt and decrypt a message using this cipher.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>caesar_encrypt(text, shift)</code> and <code>caesar_decrypt(text, shift)</code>.</li>
+                    <li>Shift letters forward (encrypt) or backward (decrypt) by the shift value.</li>
+                    <li>Assume input is lowercase and alphabetic only.</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example Test Cases:</strong><br>
+                Encrypt: "attack" with shift 3 → "dwwdfn"<br>
+                Decrypt: "dwwdfn" with shift 3 → "attack"<br>
+                Encrypt: "hello" with shift 3 → "khoor"
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Encrypt a message to your partner and have them decrypt it!
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <span class="difficulty medium">MEDIUM</span>
+            <h3>Vigenère Cipher</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> Your spy agency needs a more secure cipher than Caesar. The Vigenère cipher uses a keyword to determine different shift values for each letter in the message, making it harder to crack.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>vigenere_encrypt(text, keyword)</code> and <code>vigenere_decrypt(text, keyword)</code>.</li>
+                    <li>For each character in the text, use the corresponding letter in the keyword to determine the shift value.</li>
+                    <li>If the keyword is shorter than the message, repeat the keyword.</li>
+                    <li>Assume input is lowercase and alphabetic only.</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example:</strong><br>
+                Message: "hello"<br>
+                Keyword: "key" (repeats as "keyk")<br>
+                - For 'h', shift by 'k' (10) → 'r'<br>
+                - For 'e', shift by 'e' (4) → 'i'<br>
+                - For 'l', shift by 'y' (24) → 'j'<br>
+                - For 'l', shift by 'k' (10) → 'v'<br>
+                - For 'o', shift by 'e' (4) → 's'<br>
+                Result: "rijvs"
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Implement the Vigenère cipher and exchange encrypted messages with your classmates.
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <span class="difficulty hard">HARD</span>
+            <h3>Rail Fence Cipher</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> Your agency needs a different type of cipher called a transposition cipher. The Rail Fence cipher (also called a zigzag cipher) writes the message in a zigzag pattern across a specified number of rows, then reads the message row by row.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>rail_fence_encrypt(text, rails)</code> and <code>rail_fence_decrypt(text, rails)</code>.</li>
+                    <li>The "rails" parameter specifies the number of rows to use in the zigzag pattern.</li>
+                    <li>Spaces in the original message are ignored.</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example (with 3 rails):</strong><br>
+                Original text: "WEAREDISCOVERED"<br>
+                <pre>
+W . . . E . . . C . . . E . . .
+. A . . R . . . I . . . V . . .
+. . D . . . S . . . O . . . D .
+                </pre>
+                Reading row by row: "WECERIVODDSAE"
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Implement the Rail Fence cipher and experiment with different numbers of rails.
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2>Section 3: Advanced Challenges</h2>
+        
+        <div class="challenge">
+            <span class="difficulty medium">MEDIUM</span>
+            <h3>Password Strength Checker</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> A company has hired you to implement a password strength checker for their new account system. The checker should evaluate passwords based on multiple criteria and provide a strength rating.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>check_password_strength(password)</code>.</li>
+                    <li>Evaluate the password on criteria like length, use of uppercase/lowercase letters, numbers, and special characters.</li>
+                    <li>Return a rating: "Weak", "Medium", "Strong", or "Very Strong".</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example Criteria:</strong><br>
+                - Length >= 8 characters: +1 point<br>
+                - Contains both uppercase and lowercase: +1 point<br>
+                - Contains at least one number: +1 point<br>
+                - Contains at least one special character: +1 point<br>
+                <br>
+                <strong>Rating:</strong><br>
+                0-1 points: "Weak"<br>
+                2 points: "Medium"<br>
+                3 points: "Strong"<br>
+                4 points: "Very Strong"
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Implement the password strength checker and test it on various passwords.
+            </div>
+        </div>
+        
+        <div class="challenge">
+            <span class="difficulty hard">HARD</span>
+            <h3>Password Cracking Simulation</h3>
+            
+            <div class="scenario">
+                <strong>Scenario:</strong> You're learning about password security by simulating a dictionary attack. You have a list of common passwords and a hash function. Your goal is to "crack" a given hash by finding which password in your dictionary produced it.
+            </div>
+            
+            <div class="function-spec">
+                <strong>Function Specification:</strong>
+                <ul>
+                    <li>Define <code>crack_password(target_hash, password_list, hash_function)</code>.</li>
+                    <li>Apply the hash function to each password in the list.</li>
+                    <li>Return the password that produces the target hash, or "Password not found" if none match.</li>
+                </ul>
+            </div>
+            
+            <div class="example-cases">
+                <strong>Example:</strong><br>
+                Target hash: 528<br>
+                Password list: ["password", "123456", "qwerty", "admin", "welcome"]<br>
+                Hash function: ASCII sum<br>
+                <br>
+                Result: "admin" (ASCII sum of "admin" = 97+100+109+105+110 = 521 + (length = 5) × 10% = 526)<br>
+                <br>
+                <em>Note: For this exercise, we'll use a simple hash function: ASCII sum + (length of password × 10%)</em>
+            </div>
+            
+            <div class="task">
+                <strong>Task:</strong> Implement the password cracker and test it on various hash values. Discuss why real password hashing algorithms are much more complex.
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>Password Security Lab | Introduction to Cybersecurity</p>
+    </footer>
+</body>
+</html>
